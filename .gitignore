@@ -1,2 +1,6 @@
 .idea
 *.sqlite3
+.coverage
+.DS_Store
+htmlcov
+*.pyc
