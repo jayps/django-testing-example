@@ -41,3 +41,9 @@ class PersonViewTest(TestCase):
         response = self.client.get(f"/people/99999/greet/")
 
         self.assertEqual(response.status_code, 404)
+
+    def test_filter_by_job_title_should_return_filtered_results(self):
+        response = self.client.get("/people/?job_title=developer")
+
+        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data[0].get("job_title", None), "developer")

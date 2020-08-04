@@ -9,6 +9,7 @@ from djangotesting.api.serializers import PersonSerializer
 class PersonViewSet(viewsets.ModelViewSet):
     serializer_class = PersonSerializer
     queryset = Person.objects.all()
+    filterset_fields = ('job_title',)
 
     @action(methods=['GET'], detail=True)
     def greet(self, request, pk):
