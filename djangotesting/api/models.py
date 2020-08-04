@@ -14,4 +14,4 @@ class Person(models.Model):
     job_title = models.CharField(max_length=30, null=True, blank=True, choices=JOB_TITLE_CHOICES)
 
     def get_greeting(self):
-        return f'Hello {self.first_name} {self.last_name}'
+        return f'Hello, {self.first_name} {self.last_name}.'
