@@ -1,5 +1,7 @@
 # Django REST Framework Testing Example
 
+This repo contains a super basic DRF app with some super basic tests.
+
 ## Getting started
 - Create a virtual environment. Consider using pyenv for this, it's awesome.
 - `pip install -r requirements.txt`
