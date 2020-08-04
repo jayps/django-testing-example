@@ -8,7 +8,7 @@
 `python manage.py runserver`
 
 ### Run tests
-`coverage run --source='.' manage.py test djangotesting`
+`coverage run --source='djangotesting.api' manage.py test djangotesting`
 
 ### Get coverage (command line) 
 `coverage report`
