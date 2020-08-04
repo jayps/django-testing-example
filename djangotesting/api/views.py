@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -12,5 +12,8 @@ class PersonViewSet(viewsets.ModelViewSet):
 
     @action(methods=['GET'], detail=True)
     def greet(self, request, pk):
-        person = Person.objects.get(pk=pk)
-        return Response(data=person.get_greeting())
+        try:
+            person = Person.objects.get(pk=pk)
+            return Response(data=person.get_greeting())
+        except Person.DoesNotExist:
+            return Response(data=None, status=status.HTTP_404_NOT_FOUND)
