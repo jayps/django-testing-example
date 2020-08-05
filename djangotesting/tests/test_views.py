@@ -47,3 +47,13 @@ class PersonViewTest(TestCase):
 
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data[0].get("job_title", None), "developer")
+
+    # TDD this
+    def test_make_developer(self):
+        non_developer = Person.objects.create(first_name="Penn", last_name="Teller", job_title="magician")
+        response = self.client.put(f"/people/{non_developer.id}/make_developer/")
+
+        developer = Person.objects.get(id=non_developer.id)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(developer.job_title, "developer")

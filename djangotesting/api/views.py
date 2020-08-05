@@ -18,3 +18,15 @@ class PersonViewSet(viewsets.ModelViewSet):
             return Response(data=person.get_greeting())
         except Person.DoesNotExist:
             return Response(data=None, status=status.HTTP_404_NOT_FOUND)
+
+    @action(methods=['PUT'], detail=True)
+    def make_developer(self, request, pk):
+        try:
+            person = Person.objects.get(pk=pk)
+            person.job_title = "developer"
+            person.save()
+            serializer = PersonSerializer(person, many=False)
+
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+        except Person.DoesNotExist:
+            return Response(data=None, status=status.HTTP_404_NOT_FOUND)
